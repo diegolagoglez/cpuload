@@ -77,7 +77,7 @@ get_cpu_idle(int processor_index = -1) {
 
 int
 cpu_count() {
-	return 1;
+	return sysconf(_SC_NPROCESSORS_ONLN);
 }
 
 static float
@@ -112,7 +112,7 @@ calculate_cpu_load() {
 
 	// Check some values.
 	if(hs == 0 || idle == 0) {
-		real_idle = 0;
+		real_idle = 100;
 	} else {
 		real_idle = idle * 100 / hs;
 	}
