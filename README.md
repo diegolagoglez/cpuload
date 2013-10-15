@@ -1,6 +1,9 @@
 cpuload
 =======
 
+> # NOTE #
+> This utility is in a early stage of development, so it can malfunction.
+
 ## Introduction ##
 
 `cpuload` is a Linux utility to view the CPU load as percentage in a time interval (since last usage).
