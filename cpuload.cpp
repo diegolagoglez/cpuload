@@ -12,11 +12,11 @@ const string EnvCpuLoadIdle	= "CPULOAD_IDLE";
 
 bool
 set_cpuload_env(const string name, int value) {
-	static stringstream value_constructor;
+	static stringstream var_ctor;
 
-	value_constructor.str(name);
-	//value << "=" << value;
-	//putenv(value.str().c_str());	// TODO Check return value.
+	var_ctor.str(name);
+	var_ctor << "=" << value;
+	putenv(const_cast<char*>(var_ctor.str().c_str()));	// TODO Check return value.
 
 	return true;
 }
@@ -34,13 +34,7 @@ get_cpuload_env(const string name, int new_value = 0) {
 }
 
 int
-get_cpuload_last_idle() {
-}
-
-int
 main() {
-
-	return 0;
 
 	ifstream file(CpuLoadFile.c_str(), std::ifstream::in);
 	char* line = new char[128];
@@ -50,8 +44,6 @@ main() {
 
 	string dummy, idle;
 	sline >> dummy >> dummy >> dummy >> dummy >> idle;	// Get forth value: cpu idle
-
-	cout << idle << endl;
 
 	return 0;
 }
